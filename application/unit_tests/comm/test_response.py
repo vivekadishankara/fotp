@@ -25,6 +25,5 @@ class TestResponse:
                         duration="DAY",
                         exchange_ts=1666287639962000000)
 
-    @pytest.mark.xfail
     def test_build_response(self, response):
         assert response.build_response() == EXAMPLE_RESPONSE
