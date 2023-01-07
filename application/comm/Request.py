@@ -3,46 +3,33 @@ Module to define the Request class and other related classes
 """
 from dataclasses import dataclass
 
+from application.comm.Common import CommonArgs, CommonComm
 
-class RequestArgs:
+
+class RequestArgs(CommonArgs):
     """
     Arguments appearing in the order request
     """
     REQUEST_TYPE = 'RequestType'
-    ORDERID = 'OrderID'
     TOKEN = 'Token'
-    SYMBOL = 'Symbol'
-    SIDE = 'Side'
-    PRICE = 'Price'
-    QUANTITY = 'Quantity'
     QUANTITY_FILLED = 'QuantityFilled'
     DISCLOSED_QUANTITY = 'DisclosedQnty'
-    TIME_STAMP = 'TimeStamp'
-    DURATION = 'Duration'
     ORDER_TYPE = 'OrderType'
-    ACCOUNT = 'Account'
     EXCHANGE = 'Exchange'
     NUM_COPIES = 'NumCopies'
+    ACCOUNT = 'Account'
 
 
-@dataclass(frozen=True)
-class Request:
+@dataclass
+class Request(CommonComm):
     """
     Represents the Order request
     """
     request_type: str
-    order_id: int
     token: int
-    symbol: str
-    side: str
-    price: float
-    quantity: int
     quantity_filled: int
     disclosed_quantity: int
-    time_stamp: int
-    duration: str
     order_type: str
-    account: str
     exchange: int
     num_copies: int
 
