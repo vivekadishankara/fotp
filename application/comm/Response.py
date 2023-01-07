@@ -13,9 +13,9 @@ class ResponseArgs(CommonArgs):
     """
     RESPONSE_TYPE = 'ResponseType'
     ERROR_CODE = 'ErrorCode'
-    EXCHANGE_ORDER_ID = 'Exchange_Oder_Id'
+    EXCHANGE_ORDER_ID = 'Exchange_Order_Id'
     CHILD_RESPONSE_TYPE = 'ChildResponseType'
-    EXCHANGE_TS = 'ExchangeTs'
+    EXCHANGE_TS = 'ExchTs'
     ACCOUNT_ID = 'AccountID'
 
 
@@ -28,7 +28,7 @@ class Response(CommonComm):
     error_code: int
     exchange_order_id: int
     child_response_type: str
-    exchange_ts: str
+    exchange_ts: int
     # this solution to add class variable to dataclass was found here:
     # https://stackoverflow.com/questions/67955425/
     #   how-to-add-the-class-instance-to-a-class-variable-in-dataclass-notation

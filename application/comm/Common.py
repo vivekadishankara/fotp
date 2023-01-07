@@ -24,6 +24,6 @@ class CommonComm:
     side: str
     price: float
     quantity: int
-    time_stamp: str
+    time_stamp: int
     duration: str
     account: str
