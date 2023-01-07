@@ -5,7 +5,7 @@ from typing import ClassVar
 from dataclasses import dataclass
 
 from application.comm.Common import CommonArgs, CommonComm
-from application.trade.ArgTypes import ResponseType
+from application.trade.ArgTypes import ResponseType, ChildResponseType
 
 
 class ResponseArgs(CommonArgs):
@@ -28,7 +28,7 @@ class Response(CommonComm):
     response_type: ResponseType
     error_code: int
     exchange_order_id: int
-    child_response_type: str
+    child_response_type: ChildResponseType
     exchange_ts: int
     # this solution to add class variable to dataclass was found here:
     # https://stackoverflow.com/questions/67955425/

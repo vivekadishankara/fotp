@@ -1,7 +1,6 @@
 import pytest
 from application.comm.Response import Response
-from application.trade.ArgTypes import ResponseType
-
+from application.trade.ArgTypes import *
 
 EXAMPLE_RESPONSE = "ResponseType:NEW_ORDER_CONFIRM|OrderID:480069891|Symbol:IFEU_BRN" \
                    "FMZ0022!|Side:B|Price:157.40000000000000568|Quantity:5|AccountID:bJEROM" \
@@ -15,15 +14,15 @@ class TestResponse:
         return Response(response_type=ResponseType.NEW_ORDER_CONFIRM,
                         order_id=480069891,
                         symbol="IFEU_BRNFMZ0022!",
-                        side="B",
+                        side=Side.B,
                         price=157.40000000000000568,
                         quantity=5,
                         account="bJEROM",
                         error_code=1,
                         time_stamp=1666287639692625876,
                         exchange_order_id=13007294,
-                        child_response_type="NULL_RESPONSE_MIDDLE",
-                        duration="DAY",
+                        child_response_type=ChildResponseType.NULL_RESPONSE_MIDDLE,
+                        duration=Duration.DAY,
                         exchange_ts=1666287639962000000)
 
     def test_build_response(self, response):

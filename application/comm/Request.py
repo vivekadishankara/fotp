@@ -4,7 +4,7 @@ Module to define the Request class and other related classes
 from dataclasses import dataclass
 
 from application.comm.Common import CommonArgs, CommonComm
-from application.trade.ArgTypes import RequestType
+from application.trade.ArgTypes import RequestType, OrderType
 
 
 class RequestArgs(CommonArgs):
@@ -30,7 +30,7 @@ class Request(CommonComm):
     token: int
     quantity_filled: int
     disclosed_quantity: int
-    order_type: str
+    order_type: OrderType
     exchange: int
     num_copies: int
 
