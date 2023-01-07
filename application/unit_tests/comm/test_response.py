@@ -1,5 +1,6 @@
 import pytest
 from application.comm.Response import Response
+from application.trade.ArgTypes import ResponseType
 
 
 EXAMPLE_RESPONSE = "ResponseType:NEW_ORDER_CONFIRM|OrderID:480069891|Symbol:IFEU_BRN" \
@@ -11,7 +12,7 @@ EXAMPLE_RESPONSE = "ResponseType:NEW_ORDER_CONFIRM|OrderID:480069891|Symbol:IFEU
 class TestResponse:
     @pytest.fixture
     def response(self):
-        return Response(response_type="NEW_ORDER_CONFIRM",
+        return Response(response_type=ResponseType.NEW_ORDER_CONFIRM,
                         order_id=480069891,
                         symbol="IFEU_BRNFMZ0022!",
                         side="B",

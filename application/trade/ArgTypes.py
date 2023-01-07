@@ -1,9 +1,20 @@
 """
 Module to define types for trade values used throughout the application
 """
+from application.utils.BaseTypes import AppFloat, BaseEnum
 
 
-class AppFloat(float):
-    def __str__(self):
-        # Assumption: The number of digits after decimal in price is 17
-        return "{:.17f}".format(self.real)
+class Price(AppFloat):
+    """
+    Class to represent prices for the orders
+    """
+
+
+class RequestType(BaseEnum):
+    NEW_ORDER = 'NEWORDER'
+
+
+class ResponseType(BaseEnum):
+    NEW_ORDER_CONFIRM = 'NEW_ORDER_CONFIRM'
+    TRADE_CONFIRM = 'TRADE_CONFIRM'
+    REJECT = 'REJECT'

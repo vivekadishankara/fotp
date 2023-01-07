@@ -5,6 +5,7 @@ from typing import ClassVar
 from dataclasses import dataclass
 
 from application.comm.Common import CommonArgs, CommonComm
+from application.trade.ArgTypes import ResponseType
 
 
 class ResponseArgs(CommonArgs):
@@ -24,7 +25,7 @@ class Response(CommonComm):
     """
     Response class to handle and send response
     """
-    response_type: str
+    response_type: ResponseType
     error_code: int
     exchange_order_id: int
     child_response_type: str

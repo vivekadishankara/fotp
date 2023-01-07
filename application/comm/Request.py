@@ -4,6 +4,7 @@ Module to define the Request class and other related classes
 from dataclasses import dataclass
 
 from application.comm.Common import CommonArgs, CommonComm
+from application.trade.ArgTypes import RequestType
 
 
 class RequestArgs(CommonArgs):
@@ -25,7 +26,7 @@ class Request(CommonComm):
     """
     Represents the Order request
     """
-    request_type: str
+    request_type: RequestType
     token: int
     quantity_filled: int
     disclosed_quantity: int

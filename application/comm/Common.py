@@ -4,7 +4,7 @@ Common Args class is defined here
 from typing import Union
 from dataclasses import dataclass
 
-from application.trade.ArgTypes import AppFloat
+from application.trade.ArgTypes import Price
 
 
 class CommonArgs:
@@ -25,7 +25,7 @@ class CommonComm:
     order_id: int
     symbol: str
     side: str
-    price: Union[AppFloat, float]
+    price: Union[Price, float]
     quantity: int
     time_stamp: int
     duration: str
@@ -33,4 +33,4 @@ class CommonComm:
 
     def __post_init__(self):
         if isinstance(self.price, float):
-            self.price = AppFloat(self.price)
+            self.price = Price(self.price)
