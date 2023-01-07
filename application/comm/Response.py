@@ -48,6 +48,7 @@ class Response(CommonComm):
         ResponseArgs.EXCHANGE_TS
     ]
 
+    @property
     def response_dict(self) -> dict:
         """
         Create a dictionary of response args and the corresponding values
@@ -73,6 +74,12 @@ class Response(CommonComm):
 
     def build_response(self):
         response = ''
+
         for arg in self.ARG_ORDER:
-            pass
+            value = self.response_dict[arg]
+            response += f"{arg}:{value}|"
+
+        response = response[:-1]
+
+        return response
 
