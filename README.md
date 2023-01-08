@@ -1,7 +1,7 @@
 # fotp
 Front Office Trading Platform
 -
-The github page can be found [here](https://github.com/vivekadishankara/fotp)
+The GitHub page can be found [here](https://github.com/vivekadishankara/fotp)
 
 ---
 ### User Guide
