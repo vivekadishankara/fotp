@@ -15,6 +15,7 @@ class EventManager:
         self.comm_path = Path(comm_folder_path)
         self.rules_engine = RulesEngine(rules_module)
         if not self.comm_path.exists():
+            print(f"The communications folder {self.comm_path} does not exist\n")
             raise RuntimeError
 
     def start(self, file_pattern):
@@ -28,13 +29,19 @@ class EventManager:
             if file not in self.CURRENT_FILES:
                 request = self.read_request(file)
                 responses = self.process_request(request)
+                for a_response in responses:
+                    print(f"Generated Response: {a_response}\n")
+                    response_string = a_response.build_response()
+                    print(f"Sent response for order_id: {a_response.order_id}: {response_string}\n")
                 self.CURRENT_FILES.add(file)
 
     @staticmethod
     def read_request(file):
         with open(file) as request_file:
             request_string = request_file.readlines()[0]
+            print(f"Received request: {request_string}\n")
             request = Request.parse(request_string)
+            print(f"Read request: {request}\n")
         return request
 
     def process_request(self, request: Request) -> List[Response]:

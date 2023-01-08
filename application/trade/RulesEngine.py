@@ -33,7 +33,10 @@ class RulesEngine:
         response_types = set()
 
         for rule in self.RULES:
-            response_types.add(rule(order))
+            response_types_rule = rule(order)
+            if response_types_rule is not None:
+                for a_response in response_types_rule:
+                    response_types.add(a_response)
 
         if ResponseType.REJECT in response_types:
             response_types = {ResponseType.REJECT}
