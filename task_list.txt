@@ -1,9 +1,9 @@
-TASK-1: make a request class *
-TASK-2: add a response class *
-TASK-3: add an order class *
-TASK-4: add a rule engine class
-TASK-5: add a method in Request to look for new orders
-TASK-6: add enums for Request values *
-TASK-7: handle price numbers *
-TASK-8: add unit test for request class *
+TASK-1: * make a request class
+TASK-2: * add a response class
+TASK-3: * add an order class
+TASK-4: * add a rule engine class
+TASK-5: * add an Event Manager class to wait for order requests
+TASK-6: * add enums for Request values
+TASK-7: * handle price numbers
+TASK-8: * add unit test for request class
 TASK-9: add accounts as a separate list

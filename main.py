@@ -1,4 +1,5 @@
 from application.utils.EventManager import EventManager
+from rules import rules
 
 COMMUNICATION_FOLDER = '../../communication/requests'
 FILE_PATTERN = 'request_*'

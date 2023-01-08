@@ -2,13 +2,16 @@ from pathlib import Path
 import time
 
 from application.comm.Request import Request
+from application.trade.Order import Order
+from application.trade.RulesEngine import RulesEngine
 
 
 class EventManager:
     CURRENT_FILES = set()
 
-    def __init__(self, comm_folder_path):
+    def __init__(self, comm_folder_path, rules_module):
         self.comm_path = Path(comm_folder_path)
+        self.rules_engine = RulesEngine(rules_module)
         if not self.comm_path.exists():
             raise RuntimeError
 
@@ -22,6 +25,8 @@ class EventManager:
         for file in files:
             if file not in self.CURRENT_FILES:
                 request = self.read_request(file)
+                order = Order(request)
+                response_types = self.rules_engine.process_order(order)
                 self.CURRENT_FILES.add(file)
 
     @staticmethod
