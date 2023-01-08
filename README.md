@@ -1,6 +1,6 @@
 # fotp
 Front Office Trading Platform
-
+-
 The github page can be found [here](https://github.com/vivekadishankara/fotp)
 
 ---
@@ -23,7 +23,8 @@ Now you can send the request to fotp.
 To do that save it in a file named 'request_{order_id}' in the communication/requests folder.
 The reader reads the folder and loads new requests every 10 seconds. An example request has already been places in the
 folder.
-The corresponding responses will appear in the 'communication/responses' folder
+The corresponding responses will appear in the 'communication/responses' folder.
+Also keep an eye on the terminal. It gives out regular output of the tasks going on.
 
 A few rules are places in the 'rules' folder. You can modify them or add your own in the file.
 The conditions to be met during the writing of a rule are as follows:
