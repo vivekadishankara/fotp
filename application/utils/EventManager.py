@@ -52,10 +52,10 @@ class EventManager:
         if not response_path.exists():
             response_path.mkdir()
 
-        for a_response in responses:
+        for i, a_response in enumerate(responses):
             order_id = a_response.order_id
             print(f"Generated Response: {a_response}\n")
             response_string = a_response.build_response()
-            with open(f"{response_path}/response_{order_id}", 'w') as file:
+            with open(f"{response_path}/response_{order_id}_{i}", 'w') as file:
                 file.write(response_string)
             print(f"Sent response for order_id: {order_id}: {response_string}\n")
