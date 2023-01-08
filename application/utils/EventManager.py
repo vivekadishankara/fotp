@@ -1,7 +1,9 @@
 from pathlib import Path
 import time
+from typing import List
 
 from application.comm.Request import Request
+from application.comm.Response import Response
 from application.trade.Order import Order
 from application.trade.RulesEngine import RulesEngine
 
@@ -25,8 +27,7 @@ class EventManager:
         for file in files:
             if file not in self.CURRENT_FILES:
                 request = self.read_request(file)
-                order = Order(request)
-                response_types = self.rules_engine.process_order(order)
+                responses = self.process_request(request)
                 self.CURRENT_FILES.add(file)
 
     @staticmethod
@@ -35,3 +36,9 @@ class EventManager:
             request_string = request_file.readlines()[0]
             request = Request.parse(request_string)
         return request
+
+    def process_request(self, request: Request) -> List[Response]:
+        order = Order(request)
+        response_types = self.rules_engine.process_order(order)
+        responses = Response.generate_response(order, response_types)
+        return responses

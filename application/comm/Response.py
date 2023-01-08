@@ -1,11 +1,13 @@
 """
 Module to define the Response class and related classes
 """
-from typing import ClassVar
+import time
+from typing import ClassVar, Set, List
 from dataclasses import dataclass
 
 from application.comm.Common import CommonArgs, CommonComm
 from application.trade.ArgTypes import ResponseType, ChildResponseType
+from application.trade.Order import Order
 
 
 class ResponseArgs(CommonArgs):
@@ -84,3 +86,42 @@ class Response(CommonComm):
 
         return response
 
+    @classmethod
+    def generate_response(cls, order: Order, response_types: Set[ResponseType]) -> List["Response"]:
+        responses = list()
+
+        for a_response_type in response_types:
+            time_stamp = time.time_ns()
+            a_response = cls(
+                response_type=a_response_type,
+                order_id=order.order_id,
+                symbol=order.symbol,
+                side=order.side,
+                price=order.price,
+                quantity=order.quantity,
+                account=order.account,
+                error_code=cls.get_error(order, a_response_type),
+                time_stamp=time_stamp,
+                exchange_order_id=cls.get_exchange_order_id(order, a_response_type),
+                child_response_type=cls.get_child_response(order, a_response_type),
+                duration=order.duration,
+                exchange_ts=time_stamp
+            )
+            responses.append(a_response)
+
+        return responses
+
+    @staticmethod
+    def get_error(order: Order, response_type: ResponseType):
+        return 1 if response_type != ResponseType.REJECT else 100109
+
+    @staticmethod
+    def get_exchange_order_id(order: Order, response_type: ResponseType):
+        return 0 if response_type == ResponseType.REJECT else 13007294
+
+    @staticmethod
+    def get_child_response(order: Order, response_type: ResponseType):
+        if response_type == ResponseType.REJECT:
+            return ChildResponseType.CANCEL_ORDER_REJECT_MIDDLE
+        else:
+            return ChildResponseType.NULL_RESPONSE_MIDDLE
