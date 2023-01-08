@@ -9,4 +9,5 @@ TASK-8: * add unit test for request class
 TASK-9: add accounts as a separate list
 TASK-10: * Add a response generation method
 TASK-11: * add print statements to EventManager
-TASK-12: Add a method to send response
+TASK-12: * Add a method to send response
+TASK-13: Add test to check the working of rule engine

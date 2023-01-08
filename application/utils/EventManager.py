@@ -24,15 +24,12 @@ class EventManager:
             time.sleep(10)
 
     def load_requests(self, file_pattern):
-        files = self.comm_path.glob(file_pattern)
+        files = (self.comm_path / 'requests').glob(file_pattern)
         for file in files:
             if file not in self.CURRENT_FILES:
                 request = self.read_request(file)
                 responses = self.process_request(request)
-                for a_response in responses:
-                    print(f"Generated Response: {a_response}\n")
-                    response_string = a_response.build_response()
-                    print(f"Sent response for order_id: {a_response.order_id}: {response_string}\n")
+                self.send_responses(responses)
                 self.CURRENT_FILES.add(file)
 
     @staticmethod
@@ -49,3 +46,16 @@ class EventManager:
         response_types = self.rules_engine.process_order(order)
         responses = Response.generate_response(order, response_types)
         return responses
+
+    def send_responses(self, responses):
+        response_path = self.comm_path / 'responses'
+        if not response_path.exists():
+            response_path.mkdir()
+
+        for a_response in responses:
+            order_id = a_response.order_id
+            print(f"Generated Response: {a_response}\n")
+            response_string = a_response.build_response()
+            with open(f"{response_path}/response_{order_id}", 'w') as file:
+                file.write(response_string)
+            print(f"Sent response for order_id: {order_id}: {response_string}\n")
