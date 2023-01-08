@@ -12,3 +12,4 @@ TASK-11: * add print statements to EventManager
 TASK-12: * Add a method to send response
 TASK-13: Add test to check the working of rule engine
 TASK-14: Improve the read me file
+TASK-15: Add method to compare response with Golden copy
